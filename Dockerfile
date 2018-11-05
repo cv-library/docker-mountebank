@@ -1,6 +1,6 @@
 FROM mhart/alpine-node:11
 
-RUN ["npm", "install", "-g", "mountebank@1.15.0", "--production"]
+RUN ["npm", "install", "-g", "mountebank@1.14.1", "--production"]
 
 RUN find /usr/lib/node_modules/mountebank \
     \( -name '*.md'          \
@@ -24,8 +24,6 @@ RUN find /usr/lib/node_modules/mountebank \
     -o -name 'test*'         \
     -o -name .travis.yml     \
     \) -exec rm -fr {} +
-
-#RUN find /usr/lib/node_modules/mountebank | sort && false
 
 FROM mhart/alpine-node:base-11
 

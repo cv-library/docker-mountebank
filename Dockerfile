@@ -1,6 +1,6 @@
-FROM mhart/alpine-node:11
+FROM mhart/alpine-node:12
 
-RUN ["npm", "install", "-g", "mountebank@1.14.1", "--production"]
+RUN ["npm", "install", "-g", "mountebank@2.1.0", "--production"]
 
 RUN find /usr/lib/node_modules/mountebank \
     \( -name '*.md'          \
@@ -25,7 +25,12 @@ RUN find /usr/lib/node_modules/mountebank \
     -o -name .travis.yml     \
     \) -exec rm -fr {} +
 
-FROM mhart/alpine-node:base-11
+# TODO File a PR
+# Based on https://github.com/ReachFive/fake-smtp-server/pull/10
+RUN sed -i 14imaxAllowedUnauthenticatedCommands:1000, \
+    /usr/lib/node_modules/mountebank/src/models/smtp/smtpServer.js
+
+FROM mhart/alpine-node:slim-12
 
 COPY --from=0 /usr/lib/node_modules/mountebank /usr
 

@@ -27,7 +27,7 @@ RUN find /usr/lib/node_modules/mountebank \
 
 # TODO File a PR
 # Based on https://github.com/ReachFive/fake-smtp-server/pull/10
-RUN sed -i 14imaxAllowedUnauthenticatedCommands:1000, \
+RUN sed -i 14imaxAllowedUnauthenticatedCommands:2000, \
     /usr/lib/node_modules/mountebank/src/models/smtp/smtpServer.js
 
 FROM mhart/alpine-node:slim-12

@@ -1,6 +1,6 @@
-FROM mhart/alpine-node:13
+FROM mhart/alpine-node:14
 
-RUN ["npm", "install", "-g", "mountebank@2.1.2", "--production"]
+RUN ["npm", "install", "-g", "mountebank@2.4.0", "--production"]
 
 RUN find /usr/lib/node_modules/mountebank \
     \( -name '*.md'          \
@@ -29,7 +29,7 @@ RUN find /usr/lib/node_modules/mountebank \
 RUN sed -i 's/maxAllowedUnauthenticatedCommands: 1000/maxAllowedUnauthenticatedCommands: 2000/' \
     /usr/lib/node_modules/mountebank/src/models/smtp/smtpServer.js
 
-FROM mhart/alpine-node:slim-13
+FROM mhart/alpine-node:slim-14
 
 COPY --from=0 /usr/lib/node_modules/mountebank /usr
 

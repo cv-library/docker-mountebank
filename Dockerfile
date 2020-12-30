@@ -1,6 +1,6 @@
 FROM mhart/alpine-node:13
 
-RUN ["npm", "install", "-g", "mountebank@2.1.2", "--production"]
+RUN ["npm", "install", "-g", "mountebank@2.4.0", "--production"]
 
 RUN find /usr/lib/node_modules/mountebank \
     \( -name '*.md'          \
